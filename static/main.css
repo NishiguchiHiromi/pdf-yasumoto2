@@ -1,0 +1,25 @@
+#header{
+    text-align: right;
+}
+
+.container{
+    margin: 0 30px;
+}
+
+#url_form{
+    border: 1px solid;
+    padding: 3px;
+}
+
+.mail_url{
+    width: 400px;
+}
+
+.button_wrapper{
+    margin-top: 30px;
+    text-align: center;
+}
+
+#progress{
+    padding: 20px;
+}

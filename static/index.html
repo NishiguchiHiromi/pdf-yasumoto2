@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Drive API Quickstart</title>
+  <meta charset="utf-8" />
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="main.css">
+  <!-- <link rel="stylesheet" href="modal.css"> -->
+</head>
+
+<body>
+  <!--Add buttons to initiate auth sequence and sign out-->
+
+  <!-- 未ログインエリア -->
+  <div id="signed_out_area" style="display: none;">
+    <button id="authorize_button">サインイン</button>
+  </div>
+
+  <!-- ログインエリア -->
+  <div id="main" style="display: none;">
+    <div id="header">
+      <button id="signout_button">サインアウト</button>
+    </div>
+    <hr>
+    <div id="url_editor">
+      <div>
+        <h3>パラメータ設定</h3>
+        <ul id="param_list">
+          <!-- パラメータ設定エリア -->
+        </ul>
+        <button id="add_param">パラメータ追加</button>
+      </div>
+      <br>
+      <div>
+        <h3>URL設定</h3>
+        <div class="container">
+          <div id="url_form">
+            <div>
+              URL：<input type="text" id="url" class="mail_url">
+              <span id="url_param_list">
+                <!-- パラメータ表示エリア -->
+              </span>
+            </div>
+            <div class="button_wrapper">
+              <button id="add_url_param">パラメータを追加</button>
+              <button id="delete_url_param">パラメータ削除</button>
+            </div>
+            <hr>
+            <div>
+              PDFの保存先フォルダ：<select class="folderSelect" id="fileUploadFloderId"></select>
+            </div>
+            <br>
+            <div>
+              新たにフォルダを作成する（作成するフォルダ名：
+              <input type="text" id="folderName">
+              作成先：
+              <select class="folderSelect" id="parentIdAddFolder"></select>
+              ）
+              <button id="createFolder">フォルダ作成</button>
+            </div>
+            <hr>
+            <div class="button_wrapper">
+              <button id="exec">ファイル取得</button>
+            </div>
+
+          </div>
+          <br>
+          <p>例）</p>
+          <div class="container">
+            <p>パラメータ1が1~3のとき、</p>
+            <div>
+              URL：<input type="text" class="mail_url"
+                value="https://www.fld.caa.go.jp/caaks/cssc06/youshiki5?yousiki5216File=A">
+              <select>
+                <option value="1">パラメータ1</option>
+              </select>
+              <input type="text" value="%255CA">
+              <select>
+                <option value="1">パラメータ1</option>
+              </select>
+              <input type="text" value="_youshiki5.pdf">
+            </div>
+            <p>の場合、</p>
+            <ul>
+              <li>https://www.fld.caa.go.jp/caaks/cssc06/youshiki5?yousiki5216File=A<font color="red">1</font>
+                %255CA<font color="red">1</font>_youshiki5.pdf</li>
+              <li>https://www.fld.caa.go.jp/caaks/cssc06/youshiki5?yousiki5216File=A<font color="red">2</font>%255CA
+                <font color="red">2</font>_youshiki5.pdf</li>
+              <li>https://www.fld.caa.go.jp/caaks/cssc06/youshiki5?yousiki5216File=A<font color="red">3</font>%255CA
+                <font color="red">3</font>_youshiki5.pdf</li>
+            </ul>
+            <p>のファイルを取得</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="modal.js"></script>
+  <script src="util.js"></script>
+  <script src="google_drive.js"></script>
+  <script src="db.js"></script>
+  <script src="main.js"></script>
+  <script src="log.js"></script>
+  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};main()"
+    onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+</body>
+
+</html>
