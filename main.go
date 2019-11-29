@@ -5,8 +5,8 @@ import (
     "log"
     "net/http"
     "io"
-    "os"
-    "strconv"
+    // "os"
+    // "strconv"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -44,7 +44,7 @@ func getPdf(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-    port, _ := strconv.Atoi(os.Args[1])
+    // port, _ := strconv.Atoi(os.Args[1])
     //ディレクトリを指定する
     fs := http.FileServer(http.Dir("static"))
     //ルーティング設定。"/"というアクセスがきたらstaticディレクトリのコンテンツを表示させる
@@ -54,5 +54,6 @@ func main() {
 
     log.Println("Listening...")
     // 3000ポートでサーバーを立ち上げる
-    http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
+    http.ListenAndServe(":5500", nil)
+    // http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 }
