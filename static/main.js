@@ -48,7 +48,7 @@ class Main {
   setDeafultParam() {
     console.log("デフォルトパラメータ設定")
     this.addSettingParam()
-    this.addUrlParam()
+    // this.addUrlParam()
     $("#param1_from").val(1)
     $("#param1_to").val(1)
     // $("#url").val("https://www.fld.caa.go.jp/caaks/cssc06/youshiki5?yousiki5216File=A");
