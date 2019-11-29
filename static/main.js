@@ -51,8 +51,8 @@ class Main {
     this.addUrlParam()
     $("#param1_from").val(1)
     $("#param1_to").val(1)
-    $("#url").val("https://www.fld.caa.go.jp/caaks/cssc06/youshiki5?yousiki5216File=A");
-    this.setUrlParam([{ select: 1, input: "%255CA" }, { select: 1, input: "_youshiki5.pdf" }])
+    // $("#url").val("https://www.fld.caa.go.jp/caaks/cssc06/youshiki5?yousiki5216File=A");
+    // this.setUrlParam([{ select: 1, input: "%255CA" }, { select: 1, input: "_youshiki5.pdf" }])
   }
 
   addEventListners() {
