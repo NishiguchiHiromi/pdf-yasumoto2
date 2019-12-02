@@ -12,8 +12,7 @@ class Util {
   }
 
   getFileName = res => {
-    console.log("ファイル名取得")
-    let filename = "faild_to_get_fileame";
+    let filename;
     const disposition = res.headers.get("content-disposition")
     // if (disposition && disposition.indexOf('inline') !== -1) {
     const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
@@ -22,6 +21,14 @@ class Util {
       filename = matches[1].replace(/['"]/g, '');
     }
     // }
+    if (!filename) {
+      const url = res.url
+      const slashIndex = url.lastIndexOf("/")
+      filename = url.substr(slashIndex + 1)
+    }
+    if (!/.+\.pdf$/.test(filename)) {
+      filename += ".pdf"
+    }
     return filename;
   }
 

@@ -53,11 +53,9 @@ func main() {
     http.HandleFunc("/pdf", getPdf)   
 
     log.Println("Listening...")
-    // 3000ポートでサーバーを立ち上げる
-    // http.ListenAndServe(":5500", nil)
     // http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
     fmt.Println(os.Getenv("PORT"))
     fmt.Println("hogehoge")
     http.ListenAndServe(":" + os.Getenv("PORT"), nil)
-    
+    // http.ListenAndServe(":5500", nil)
 }
