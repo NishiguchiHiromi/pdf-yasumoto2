@@ -55,6 +55,6 @@ func main() {
     log.Println("Listening...")
     // http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
     fmt.Println(os.Getenv("PORT"))
-    // http.ListenAndServe(":" + os.Getenv("PORT"), nil)
-    http.ListenAndServe(":5500", nil)
+    http.ListenAndServe(":" + os.Getenv("PORT"), nil)
+    // http.ListenAndServe(":5500", nil)
 }
