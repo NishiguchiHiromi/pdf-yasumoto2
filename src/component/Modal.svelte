@@ -57,7 +57,7 @@
     height: 15%;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
   }
   .button-wrapper {
     text-align: center;

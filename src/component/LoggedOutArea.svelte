@@ -3,14 +3,17 @@
   export let login;
 </script>
 
-<div>
+<div class="main">
   <Button on:click={login} variant="unelevated">
     <Label>ログイン</Label>
   </Button>
 </div>
 
-<style>
-  div {
+<style lang="scss">
+  .main {
+    width: 90%;
+    margin: 0 auto;
     text-align: right;
+    margin-top: 20px;
   }
 </style>
