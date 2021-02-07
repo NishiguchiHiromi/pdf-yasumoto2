@@ -9,6 +9,7 @@
   import { tick } from "svelte";
 
   export let fileSaveDirectoryId;
+  let myDrive = { id: "0AKn2j22Oj-hTUk9PVA", name: "マイドライブ" };
   let directories = [];
   let directory_ids = [];
   let tree;
@@ -21,7 +22,7 @@
   });
 
   async function getDirectories() {
-    directories = await Drive.getFolders();
+    directories = [...(await Drive.getFolders()), myDrive];
     directory_ids = [];
     await tick();
     directory_ids = directories.map((d) => d.id);
@@ -80,7 +81,6 @@
                 {#each directory_ids as id}
                   <Option value={id}>
                     {directories.find((d) => d.id === id).name}
-                    <!-- {directories.find((d) => d.id === id).name} -->
                   </Option>
                 {/each}
               </Select>

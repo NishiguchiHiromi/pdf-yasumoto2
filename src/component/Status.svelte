@@ -1,5 +1,5 @@
 <script>
-  import { onMount, tick } from "svelte";
+  import { onMount } from "svelte";
   import { FileDownloader } from "../service/FileDownloader";
   import { FileScraper } from "../service/FileScraper";
   import { CsvUploader } from "../service/file_uploader/CsvUploader";
@@ -9,7 +9,6 @@
   import DataTable, { Head, Body, Row, Cell } from "@smui/data-table";
   import Button, { Label } from "@smui/button";
   import Snackbar from "@smui/snackbar";
-  // import MyWorker from "web-worker:../worker";
 
   const STATUS = Object.freeze({
     notYet: 1,
@@ -45,7 +44,6 @@
   onMount(() => {
     initializeInfo();
     start();
-    console.log("start finish");
   });
 
   function initializeInfo() {
@@ -61,32 +59,6 @@
       return { ...i, ...properties };
     });
   }
-
-  // function worker() {
-  //   console.log("worker");
-  //   // var worker = MyWorker();
-  //   const worker = new Worker("build/worker.js");
-  //   const listners = {
-  //     progress: ({ type, ...info }) => {
-  //       setInfo(info);
-  //     },
-  //     finish: () => {
-  //       uploadResultCsv();
-  //       finished = true;
-  //       if (!stoped) finishSnackbar.open();
-  //     },
-  //   };
-  //   //処理結果、受信イベント
-  //   worker.addEventListener(
-  //     "message",
-  //     function (e) {
-  //       console.log(e.data);
-  //       listners[e.data.type](e.data);
-  //     },
-  //     false
-  //   );
-  //   worker.postMessage({ type: "start", info });
-  // }
 
   async function start() {
     stoped = false;
@@ -175,8 +147,7 @@
   }
 
   function exit() {
-    // stoped = true;
-    worker.postMessage({ type: "stop" });
+    stoped = true;
     stopedSnackbar.open();
   }
 
@@ -187,7 +158,6 @@
 </script>
 
 <div>
-  <!-- <button on:click={worker}>worker</button> -->
   <div class="header">
     {#if !finished}
       <Button on:click={exit} variant="unelevated"><Label>中断</Label></Button>
@@ -213,7 +183,7 @@
     <Head>
       <Row>
         <Cell style="width: 40%;">ファイル名</Cell>
-        <Cell style="width: 30%;">ステータス</Cell>
+        <Cell style="width: 30%;text-align: center;">ステータス</Cell>
         <Cell style="width: 30%;" />
       </Row>
     </Head>

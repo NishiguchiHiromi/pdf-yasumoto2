@@ -14,6 +14,6 @@ export class FileUploader {
   }
 
   async getBase64() {
-    return Util.blobToBase64(this.blob)
+    return Util.blobToBase64({ blob: this.blob, prefix: this.base64Prefix })
   }
 }

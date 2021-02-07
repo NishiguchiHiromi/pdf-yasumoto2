@@ -1,6 +1,6 @@
 export class Util {
-  static async blobToBase64(blob) {
-    return this.createDataUrl(blob).then(url => url.replace(/data:.*\/.*;base64,/, ''))
+  static async blobToBase64({ blob, prefix = /data:.*\/.*;base64,/ }) {
+    return this.createDataUrl(blob).then(url => url.replace(prefix, ''))
   }
 
   static async createDataUrl(blob) {
@@ -27,5 +27,7 @@ export class Util {
     return y + m + d + hh + mi + ss;
   }
 
-  static sleep = msec => new Promise(resolve => setTimeout(resolve, msec))
+  static async sleep(msec) {
+    return new Promise(resolve => setTimeout(resolve, msec))
+  }
 }
