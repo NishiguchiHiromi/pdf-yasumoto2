@@ -46,7 +46,7 @@ func getPdf(w http.ResponseWriter, r *http.Request) {
 func main() {
     // port, _ := strconv.Atoi(os.Args[1])
     //ディレクトリを指定する
-    fs := http.FileServer(http.Dir("static"))
+    fs := http.FileServer(http.Dir("public"))
     //ルーティング設定。"/"というアクセスがきたらstaticディレクトリのコンテンツを表示させる
     http.Handle("/", fs)
     http.HandleFunc("/hello", handler)
@@ -55,7 +55,6 @@ func main() {
     log.Println("Listening...")
     // http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
     fmt.Println(os.Getenv("PORT"))
-    fmt.Println("hogehoge")
     // http.ListenAndServe(":" + os.Getenv("PORT"), nil)
     http.ListenAndServe(":5500", nil)
 }
