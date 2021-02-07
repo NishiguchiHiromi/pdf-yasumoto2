@@ -67,11 +67,15 @@
         if (stoped) break;
 
         const scraper = new FileScraper({ url: fileInfo.url });
-        await scraper.fetch();
+        await scraper.fetch().catch(() => {
+          throw new Error("PDFの取得に失敗しました");
+        });
 
         // ファイル変換
         setInfo({ id: fileInfo.id, status: STATUS.converting });
-        const blob = await scraper.getBlob();
+        const blob = await scraper.getBlob().catch(() => {
+          throw new Error("PDFの変換に失敗しました");
+        });
 
         // ファイルアップロード
         setInfo({ id: fileInfo.id, status: STATUS.uploading });
@@ -80,7 +84,9 @@
           directoryId,
           filename: fileInfo.filename,
         });
-        const file = await uploader.upload();
+        const file = await uploader.upload().catch(() => {
+          throw new Error("PDFのアップロードに失敗しました");
+        });
 
         // 完了
         setInfo({
