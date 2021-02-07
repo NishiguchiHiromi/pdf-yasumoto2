@@ -33,7 +33,7 @@ func getPdf(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Disposition", resp.Header.Get("Content-Disposition"))
     w.Header().Set("Content-Type", resp.Header.Get("Content-Type"))
     w.Header().Set("Content-Length", resp.Header.Get("Content-Length"))
-
+    w.Header().Set("Access-Control-Allow-Origin", "*")
     // log.Println(resp.Header.Get("Content-Disposition"))
 
     _, err = io.Copy(w, resp.Body)
@@ -56,6 +56,6 @@ func main() {
     // http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
     fmt.Println(os.Getenv("PORT"))
     fmt.Println("hogehoge")
-    http.ListenAndServe(":" + os.Getenv("PORT"), nil)
-    // http.ListenAndServe(":5500", nil)
+    // http.ListenAndServe(":" + os.Getenv("PORT"), nil)
+    http.ListenAndServe(":5500", nil)
 }
