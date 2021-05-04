@@ -1,7 +1,6 @@
 export class FileScraper {
   constructor({ url }) {
-    // this.serverRoot = "http://localhost:5500"
-    this.serverRoot = "https://boiling-dusk-96001.herokuapp.com"
+    this.serverRoot = process.env.BASE_URL
     this.url = url
   }
 

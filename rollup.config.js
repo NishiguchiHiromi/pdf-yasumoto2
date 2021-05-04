@@ -5,6 +5,12 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import preprocess from 'svelte-preprocess';
 import postcss from 'rollup-plugin-postcss';
+import replace from '@rollup/plugin-replace';
+import dotenv from 'dotenv';
+import copy from 'rollup-plugin-copy';
+var rimraf = require("rimraf");
+dotenv.config();
+const version = +new Date;
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -35,9 +41,27 @@ export default {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'public/build/bundle.js'
+		// dir: 'public/build',
+		// entryFileNames: "public/build/bundle-[hash].js"
+		file: `public/build/bundle-${version}.js`,
 	},
 	plugins: [
+		{
+			name: 'copy-file',
+    	buildStart: () => rimraf.sync("public/build")
+		},
+		replace({
+			'process.env.BASE_URL': JSON.stringify(production ? process.env.BASE_URL : "http://localhost:5500"),
+    }),
+		copy({
+			targets: [
+					{
+							src:'public/template/index.html',
+							dest: 'public',
+							transform: (contents) => contents.toString().replace(/__VERSION__/g, version)
+					}
+			],
+		}),
 		svelte({
 			compilerOptions: {
 				// enable run-time checks when not in production
